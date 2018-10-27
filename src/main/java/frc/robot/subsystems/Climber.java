@@ -17,8 +17,7 @@ import frc.robot.RobotMap;
 public class Climber extends Subsystem implements ISubsystem {
   // define class level working variables
 
-  TalonSRX climberCan;
-
+  TalonSRX motor;
 
   // TODO: Is there a better name for these positions?
   enum ServoPosition { POSITION_0, POSITION_1 };
@@ -38,7 +37,7 @@ public class Climber extends Subsystem implements ISubsystem {
 
   // private constructor for singleton pattern
   private Climber() {
-    climberCan = new TalonSRX(RobotMap.CLIMBER_CAN_ADDRESS);
+    motor = new TalonSRX(RobotMap.CLIMBER_CAN_ADDRESS);
     servo = new Servo(RobotMap.CLIMBER_SERVO_PWM_ADDRESS);
     servoPosition = ServoPosition.POSITION_0;
   }
@@ -67,9 +66,9 @@ public class Climber extends Subsystem implements ISubsystem {
     // get_carriageWheelsState().toString());
   }
 
-  public void runClimberMotor(double climberMotorSpeed) {
+  public void runClimberMotor(double motorSpeed) {
     // TODO: Consider limiting climberMotorSpeed to some range for safety
-    climberCan.set(ControlMode.PercentOutput, climberMotorSpeed);
+    motor.set(ControlMode.PercentOutput, motorSpeed);
   }
 
   public void toggleClimberServo() {
