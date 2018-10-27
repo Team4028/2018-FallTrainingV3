@@ -7,14 +7,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.interfaces.ISubsystem;
 import frc.robot.models.LogDataBE;
 
+import frc.robot.RobotMap;
+
 /**
  * An example subsystem. Use this as a template.
  */
 public class Climber extends Subsystem implements ISubsystem {
   // define class level working variables
 
-  // TODO: Is there a better name for this motor?
-  TalonSRX canTalon;
+  TalonSRX climberCan;
 
   // =====================================================================================
   // Define Singleton Pattern
@@ -27,7 +28,7 @@ public class Climber extends Subsystem implements ISubsystem {
 
   // private constructor for singleton pattern
   private Climber() {
-    canTalon = new TalonSRX()
+    climberCan = new TalonSRX(RobotMap.CLIMBER_CAN_ADDRESS);
   }
 
   // =====================================================================================
@@ -54,7 +55,7 @@ public class Climber extends Subsystem implements ISubsystem {
     // get_carriageWheelsState().toString());
   }
 
-  public void runClimberMotor(double) {
+  public void runClimberMotor(double arg) {
     // TODO: Need argument name
   }
 
