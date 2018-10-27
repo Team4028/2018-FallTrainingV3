@@ -50,7 +50,7 @@ public class RobotMap
 	// PCM Ports
 	public static final int CARRIAGE_SQUEEZE_PCM_PORT = 0;
 	public static final int CARRIAGE_WIDE_PCM_PORT = 1;
-	public static final int SHIFTER_EXTEND_PCM_PORT = 3;
+	public static final int SHIFTER_EXTEND_PCM_PORT = 6;
 	public static final int SHIFTER_RETRACT_PCM_PORT = 7;
 	public static final int CARRIAGE_FLAP_UP_PCM_PORT = 4;
 	public static final int CARRIAGE_FLAP_DOWN_PCM_PORT = 5;
