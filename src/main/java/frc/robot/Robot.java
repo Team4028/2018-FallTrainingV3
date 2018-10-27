@@ -7,145 +7,115 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
+// #region Import Statements
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.robot.util.BeakUtilities;
-import frc.robot.util.DataLogger;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import java.util.Date;
+
+import org.usfirst.frc.team4028.robot.auton.pathfollowing.Paths;
+import org.usfirst.frc.team4028.robot.commands.Elevator_ZeroElevator;
+import org.usfirst.frc.team4028.robot.commands.Infeed_ZeroInfeedArms;
+import org.usfirst.frc.team4028.robot.sensors.SwitchableCameraServer;
+import org.usfirst.frc.team4028.robot.subsystems.Carriage;
+import org.usfirst.frc.team4028.robot.subsystems.Chassis;
+import org.usfirst.frc.team4028.robot.subsystems.Climber;
+import org.usfirst.frc.team4028.robot.subsystems.Elevator;
+import org.usfirst.frc.team4028.robot.subsystems.Infeed;
+import org.usfirst.frc.team4028.robot.util.GeneralUtilities;
+import org.usfirst.frc.team4028.robot.util.LogDataBE;
+import org.usfirst.frc.team4028.robot.util.MovingAverage;
+import org.usfirst.frc.team4028.robot.util.DataLogger;
+// #endregion
 
 /**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the TimedRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the build.gradle file in the
- * project.
+ * The VM is configured to automatically run this class
  */
 public class Robot extends TimedRobot 
 {
-  // create instance of singelton Subsystems
-  private static final String ROBOT_NAME = "2019-FallTrainingV3-CMD BASED";
+	private static final String ROBOT_NAME = "2018-FallTrainingV3";
+	
+	// create instance of singelton Subsystems
+	private Dashboard _dashboard = Dashboard.getInstance();
+	
+	//private Carriage _carriage = Carriage.getInstance();
+	private Chassis _chassis = Chassis.getInstance();
+	//private Climber _climber = Climber.getInstance();
+	//private Elevator _elevator = Elevator.getInstance();
+	//private Infeed _infeed = Infeed.getInstance();
+	private OI _oi = OI.getInstance();
+	//private SwitchableCameraServer _camera = SwitchableCameraServer.getInstance();
 
+	
 	// class level working variables
 	private DataLogger _dataLogger = null;
 	private String _buildMsg = "?";
+ 	long _lastScanEndTimeInMSec = 0;
+ 	long _lastDashboardWriteTimeMSec;
+ 	MovingAverage _scanTimeSamples;
+ 	
+	/**
+	 * This function is run when the robot is first started up and should be used for any initialization code.
+	 */
+	@Override
+	public void robotInit() 
+	{
+	}
 
-  // ==============================================================================================
-  // Robot StartUp
-  // ==============================================================================================
+	/**
+	 * This function is called once each time the robot enters Disabled mode.
+	 * You can use it to reset any subsystem information you want to clear when
+	 * the robot is disabled.
+	 */
+	@Override
+	public void disabledInit() {
 
-  /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
-   */
-  @Override
-  public void robotInit() 
-  {
-    _buildMsg = BeakUtilities.WriteBuildInfoToDashboard(ROBOT_NAME);
-  }
+	}
 
-  // ==============================================================================================
-  // Robot Disabled
-  // ==============================================================================================
+	@Override
+	public void disabledPeriodic() {
+		Scheduler.getInstance().run();
 
-  /**
-   * This function is called once each time the robot enters Disabled mode.
-   * You can use it to reset any subsystem information you want to clear when
-   * the robot is disabled.
-   */
-  @Override
-  public void disabledInit() 
-  {
-  }
+	}
 
-  @Override
-  public void disabledPeriodic() 
-  {
+	/**
+	 * This method runs 1x when the robot enters auton mode
+	 */
+	@Override
+	public void autonomousInit() {
+	}
+
+	/**
+	 * This function is called periodically during autonomous.
+	 */
+	@Override
+	public void autonomousPeriodic() 
+	{
+		Scheduler.getInstance().run();
+	}
+
+	/**
+	 * This method runs 1x when the robot enters telop mode
+	 */
+	@Override
+	public void teleopInit() {
+	}
+
+	/**
+	 * This function is called periodically during operator control.
+	 */
+	@Override
+	public void teleopPeriodic() {
     Scheduler.getInstance().run();
   }
 
-  // ==============================================================================================
-  // Autonomous Mode
-  // ==============================================================================================
-
-   /**
-   * This method run 1x when the robot is enabled in auton mode
-   */
-  @Override
-  public void autonomousInit() 
-  {
-   // m_autonomousCommand = m_chooser.getSelected();
-
-    /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector",
-     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-     * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
-     */
-
-    // schedule the autonomous command (example)
-
-  }
-
-  /**
-   * This function is called periodically during autonomous.
-   */
-  @Override
-  public void autonomousPeriodic() 
-  {
-    Scheduler.getInstance().run();
-  }
-
-  // ==============================================================================================
-  // Telop Mode
-  // ==============================================================================================
-  
-  /**
-  * This method run 1x when the robot is enabled in telop mode
-  */
-  @Override
-  public void teleopInit() 
-  {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-
-  }
-
-  /**
-   * This function is called periodically during operator control.
-   */
-  @Override
-  public void teleopPeriodic() 
-  {
-    Scheduler.getInstance().run();
-  }
-
-  // ==============================================================================================
-  // Test Mode
-  // ==============================================================================================
-  
-  /**
-   * This function is called periodically during test mode.
-   */
-  @Override
-  public void testPeriodic() 
-  {
-  }
-
-  // ==============================================================================================
-  // Special Methods
-  // ==============================================================================================
-  /**
-   * This function is called every robot packet, no matter the mode. Use
-   * this for items like diagnostics that you want ran during disabled,
-   * autonomous, teleoperated and test.
-   *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
-   */
-  @Override
-  public void robotPeriodic() 
-  {
-  }
-
+	/**
+	 * This function is called periodically during test mode.
+	 */
+	@Override
+	public void testPeriodic() {}
 }

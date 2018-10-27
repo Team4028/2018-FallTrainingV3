@@ -4,9 +4,9 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package frc.robot;
 
+import frc.robot.commands.Climber_ToggleClimberServoPosition;
 import frc.robot.util.BeakXboxController;
 
 /**
@@ -31,6 +31,8 @@ public class OI
 	// private constructor for singleton pattern
   public OI() {
     _driverGamePad = new BeakXboxController(RobotMap.DRIVERS_STATION_DRIVER_GAMEPAD_USB_PORT);
-    _operatorGamepad = new BeakXboxController(RobotMap.DRIVERS_STATION_OPERATOR_GAMEPAD_USB_PORT);
+		_operatorGamepad = new BeakXboxController(RobotMap.DRIVERS_STATION_OPERATOR_GAMEPAD_USB_PORT);
+		
+		_operatorGamepad.a.whenPressed(new Climber_ToggleClimberServoPosition());
   }
 }
