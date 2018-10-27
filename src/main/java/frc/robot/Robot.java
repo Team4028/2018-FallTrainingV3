@@ -17,19 +17,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.util.Date;
 
-import org.usfirst.frc.team4028.robot.auton.pathfollowing.Paths;
-import org.usfirst.frc.team4028.robot.commands.Elevator_ZeroElevator;
-import org.usfirst.frc.team4028.robot.commands.Infeed_ZeroInfeedArms;
-import org.usfirst.frc.team4028.robot.sensors.SwitchableCameraServer;
-import org.usfirst.frc.team4028.robot.subsystems.Carriage;
-import org.usfirst.frc.team4028.robot.subsystems.Chassis;
-import org.usfirst.frc.team4028.robot.subsystems.Climber;
-import org.usfirst.frc.team4028.robot.subsystems.Elevator;
-import org.usfirst.frc.team4028.robot.subsystems.Infeed;
-import org.usfirst.frc.team4028.robot.util.GeneralUtilities;
-import org.usfirst.frc.team4028.robot.util.LogDataBE;
-import org.usfirst.frc.team4028.robot.util.MovingAverage;
-import org.usfirst.frc.team4028.robot.util.DataLogger;
 // #endregion
 
 /**
@@ -43,20 +30,12 @@ public class Robot extends TimedRobot
 	private Dashboard _dashboard = Dashboard.getInstance();
 	
 	//private Carriage _carriage = Carriage.getInstance();
-	private Chassis _chassis = Chassis.getInstance();
 	//private Climber _climber = Climber.getInstance();
 	//private Elevator _elevator = Elevator.getInstance();
 	//private Infeed _infeed = Infeed.getInstance();
 	private OI _oi = OI.getInstance();
 	//private SwitchableCameraServer _camera = SwitchableCameraServer.getInstance();
 
-	
-	// class level working variables
-	private DataLogger _dataLogger = null;
-	private String _buildMsg = "?";
- 	long _lastScanEndTimeInMSec = 0;
- 	long _lastDashboardWriteTimeMSec;
- 	MovingAverage _scanTimeSamples;
  	
 	/**
 	 * This function is run when the robot is first started up and should be used for any initialization code.

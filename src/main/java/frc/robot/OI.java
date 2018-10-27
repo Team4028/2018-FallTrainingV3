@@ -6,7 +6,7 @@
 /*----------------------------------------------------------------------------*/
 package frc.robot;
 
-import frc.robot.commands.Climber_ToggleClimberServoPosition;
+import frc.robot.commands.Climber_ToggleClimberServo;
 import frc.robot.util.BeakXboxController;
 
 /**
@@ -33,6 +33,6 @@ public class OI
     _driverGamePad = new BeakXboxController(RobotMap.DRIVERS_STATION_DRIVER_GAMEPAD_USB_PORT);
 		_operatorGamepad = new BeakXboxController(RobotMap.DRIVERS_STATION_OPERATOR_GAMEPAD_USB_PORT);
 		
-		_operatorGamepad.a.whenPressed(new Climber_ToggleClimberServoPosition());
+		_operatorGamepad.a.whenPressed(new Climber_ToggleClimberServo());
   }
 }
