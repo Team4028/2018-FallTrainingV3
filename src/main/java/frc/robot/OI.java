@@ -39,7 +39,15 @@ public class OI
     _driverGamePad.leftStick.whenReleased(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
     _driverGamePad.rightStick.whenReleased(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
 
-
+		/*public boolean getHighGearCommand() 
+		{
+			return _driverJoystick.getRawButton(3);
+		}
+	
+		public boolean getLowGearCommand() 
+		{
+			return _driverJoystick.getRawButton(4);
+		}*/
 
   }
 }
