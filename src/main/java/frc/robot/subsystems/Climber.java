@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -55,8 +56,9 @@ public class Climber extends Subsystem implements ISubsystem {
     // get_carriageWheelsState().toString());
   }
 
-  public void runClimberMotor(double arg) {
-    // TODO: Need argument name
+  public void runClimberMotor(double climberMotorSpeed) {
+    // TODO: Consider limiting climberMotorSpeed to some range for safety
+    climberCan.set(ControlMode.PercentOutput, climberMotorSpeed);
   }
 
   public void toggleClimberServo() {
