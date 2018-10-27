@@ -7,8 +7,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.commands.Climber_RunClimberMotor;
-import frc.robot.commands.Climber_ToggleClimberServo;
+//import frc.robot.commands.Climber_RunClimberMotor;
+//import frc.robot.commands.Climber_ToggleClimberServo;
+import frc.robot.commands.Chassis_DriveWithControllers;
+import frc.robot.commands.Chassis_ShiftGear;
 import frc.robot.util.BeakXboxController;
 import frc.robot.util.BeakXboxController.Thumbstick;
 
@@ -38,8 +40,24 @@ public class OI
 		
 		Thumbstick rightStick = _operatorGamepad.rightStick;
 
-		_operatorGamepad.a.whenPressed(new Climber_ToggleClimberServo());
-		_operatorGamepad.rightStick.whenActive(new Climber_RunClimberMotor(rightStick));
-		_operatorGamepad.rightStick.whenReleased(new Climber_RunClimberMotor(rightStick));
+		//_operatorGamepad.a.whenPressed(new Climber_ToggleClimberServo());
+		//_operatorGamepad.rightStick.whenActive(new Climber_RunClimberMotor(rightStick));
+		//_operatorGamepad.rightStick.whenReleased(new Climber_RunClimberMotor(rightStick));
+		_driverGamePad.leftStick.whileActive(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
+    _driverGamePad.rightStick.whileActive(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
+    _driverGamePad.leftStick.whenReleased(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
+		_driverGamePad.rightStick.whenReleased(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
+		_driverGamePad.start.whenPressed(new Chassis_ShiftGear());
+
+		/*public boolean getHighGearCommand() 
+		{
+			return _driverJoystick.getRawButton(3);
+		}
+	
+		public boolean getLowGearCommand() 
+		{
+			return _driverJoystick.getRawButton(4);
+		}*/
+
   }
 }
