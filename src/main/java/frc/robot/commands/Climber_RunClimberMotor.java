@@ -3,7 +3,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
-//#endregion
 import frc.robot.subsystems.Climber;
 import frc.robot.util.BeakXboxController.Thumbstick;
 
