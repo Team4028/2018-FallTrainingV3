@@ -74,7 +74,7 @@ public class Chassis extends Subsystem
         _shifter.set(Chassis.SHIFTER_LOW_GEAR_POS);
     }
 
-    private synchronized boolean HighGear() 
+    public synchronized boolean HighGear() 
     {
 		return _shifter.get() == SHIFTER_HIGH_GEAR_POS;
 	}
