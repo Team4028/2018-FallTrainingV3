@@ -73,7 +73,12 @@ public class Chassis extends Subsystem
         //set the gearbox to low gear
         _shifter.set(Chassis.SHIFTER_LOW_GEAR_POS);
     }
- 
+
+    private synchronized boolean HighGear() 
+    {
+		return _shifter.get() == SHIFTER_HIGH_GEAR_POS;
+	}
+
 
   @Override
   public void initDefaultCommand() 
