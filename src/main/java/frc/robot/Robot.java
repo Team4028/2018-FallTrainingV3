@@ -24,6 +24,8 @@ public class Robot extends TimedRobot
   // create instance of singelton Subsystems
   private static final String ROBOT_NAME = "2019-FallTrainingV3-CMD BASED";
 
+  private OI _oi = OI.getInstance();
+  
 	// class level working variables
 	private DataLogger _dataLogger = null;
 	private String _buildMsg = "?";
