@@ -13,7 +13,7 @@ import frc.robot.interfaces.ISubsystem;
 import frc.robot.models.LogDataBE;
 
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * An example subsystem.  Use this as a template.
  */
 public class ExampleSubsystem extends Subsystem implements ISubsystem 
 {
