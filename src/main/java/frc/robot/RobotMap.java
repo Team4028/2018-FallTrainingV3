@@ -21,7 +21,10 @@ public class RobotMap
   // =============================
   // Talon Motor Controllers
   // =============================
-  //public static final int CHASSIS_LEFT_DRIVE_MASTER_TALON_CAN_BUS_ID = 5;
+  public static final int CHASSIS_LEFT_DRIVE_MASTER_TALON_CAN_BUS_ID = 1;
+  public static final int CHASSIS_LEFT_DRIVE_SLAVE_TALON_CAN_BUS_ID = 2;
+  public static final int CHASSIS_RIGHT_DRIVE_MASTER_TALON_CAN_BUS_ID = 3;
+  public static final int CHASSIS_RIGHT_DRIVE_SLAVE_TALON_CAN_BUS_ID = 4;
 
   // =============================
   // PWM Ports
@@ -31,7 +34,8 @@ public class RobotMap
   // =============================
   // Solenoids (PCM Controller)
   // =============================
-  //public static final int CHASSIS_GEARBOX_SHIFTER_HIGH_GEAR_PCM_PORT = 1;
+  public static final int CHASSIS_GEARBOX_SHIFTER_HIGH_GEAR_PCM_PORT = 6;
+  public static final int CHASSIS_GEARBOX_SHIFTER_LOW_GEAR_PCM_PORT = 7;
 
   // =============================
   // Digital I/O
