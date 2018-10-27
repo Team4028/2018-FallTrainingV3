@@ -8,6 +8,7 @@
 package frc.robot;
 
 import frc.robot.commands.Chassis_DriveWithControllers;
+import frc.robot.commands.Chassis_ShiftGear;
 import frc.robot.util.BeakXboxController;
 
 /**
@@ -37,7 +38,8 @@ public class OI
 		_driverGamePad.leftStick.whileActive(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
     _driverGamePad.rightStick.whileActive(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
     _driverGamePad.leftStick.whenReleased(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
-    _driverGamePad.rightStick.whenReleased(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
+		_driverGamePad.rightStick.whenReleased(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
+		_driverGamePad.start.whenPressed(new Chassis_ShiftGear());
 
 		/*public boolean getHighGearCommand() 
 		{
