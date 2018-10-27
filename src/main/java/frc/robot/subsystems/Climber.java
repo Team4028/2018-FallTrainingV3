@@ -74,10 +74,12 @@ public class Climber extends Subsystem implements ISubsystem {
   public void toggleClimberServo() {
     if (servoPosition == ServoPosition.POSITION_0) {
       servoPosition = ServoPosition.POSITION_1;
+      System.out.println("Position 1");
       servo.set(1.0);
     } else if (servoPosition == ServoPosition.POSITION_1) {
       servoPosition = ServoPosition.POSITION_0;
       servo.set(0.0);
+      System.out.println("Position 0");
     } else {
       // TODO: Throw appropriate error if another starting servo position is found
       System.err.println("Unknown starting servo position");
