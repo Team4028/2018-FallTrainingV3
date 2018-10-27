@@ -4,12 +4,15 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+//import frc.robot.commands.Climber_RunClimberMotor;
+//import frc.robot.commands.Climber_ToggleClimberServo;
 import frc.robot.commands.Chassis_DriveWithControllers;
 import frc.robot.commands.Chassis_ShiftGear;
 import frc.robot.util.BeakXboxController;
+import frc.robot.util.BeakXboxController.Thumbstick;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -35,6 +38,11 @@ public class OI
     _driverGamePad = new BeakXboxController(RobotMap.DRIVERS_STATION_DRIVER_GAMEPAD_USB_PORT);
 		_operatorGamepad = new BeakXboxController(RobotMap.DRIVERS_STATION_OPERATOR_GAMEPAD_USB_PORT);
 		
+		Thumbstick rightStick = _operatorGamepad.rightStick;
+
+		//_operatorGamepad.a.whenPressed(new Climber_ToggleClimberServo());
+		//_operatorGamepad.rightStick.whenActive(new Climber_RunClimberMotor(rightStick));
+		//_operatorGamepad.rightStick.whenReleased(new Climber_RunClimberMotor(rightStick));
 		_driverGamePad.leftStick.whileActive(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
     _driverGamePad.rightStick.whileActive(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
     _driverGamePad.leftStick.whenReleased(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));

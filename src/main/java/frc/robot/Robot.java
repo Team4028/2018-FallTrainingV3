@@ -7,17 +7,22 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
+// #region Import Statements
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.util.BeakUtilities;
 import frc.robot.util.DataLogger;
 
+import java.util.Date;
+
+// #endregion
+
 /**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the TimedRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the build.gradle file in the
- * project.
+ * The VM is configured to automatically run this class
  */
 public class Robot extends TimedRobot 
 {
@@ -64,90 +69,9 @@ public class Robot extends TimedRobot
     Scheduler.getInstance().run();
   }
 
-  // ==============================================================================================
-  // Autonomous Mode
-  // ==============================================================================================
-
-   /**
-   * This method run 1x when the robot is enabled in auton mode
-   */
-  @Override
-  public void autonomousInit() 
-  {
-   // m_autonomousCommand = m_chooser.getSelected();
-
-    /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector",
-     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-     * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
-     */
-
-    // schedule the autonomous command (example)
-
-  }
-
-  /**
-   * This function is called periodically during autonomous.
-   */
-  @Override
-  public void autonomousPeriodic() 
-  {
-    Scheduler.getInstance().run();
-  }
-
-  // ==============================================================================================
-  // Telop Mode
-  // ==============================================================================================
-  
-  /**
-  * This method run 1x when the robot is enabled in telop mode
-  */
-  @Override
-  public void teleopInit() 
-  {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-
-  }
-
-  /**
-   * This function is called periodically during operator control.
-   */
-  @Override
-  public void teleopPeriodic() 
-  {
-    Scheduler.getInstance().run();
-  }
-
-  // ==============================================================================================
-  // Test Mode
-  // ==============================================================================================
-  
-  /**
-   * This function is called periodically during test mode.
-   */
-  @Override
-  public void testPeriodic() 
-  {
-  }
-
-  // ==============================================================================================
-  // Special Methods
-  // ==============================================================================================
-  /**
-   * This function is called every robot packet, no matter the mode. Use
-   * this for items like diagnostics that you want ran during disabled,
-   * autonomous, teleoperated and test.
-   *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
-   */
-  @Override
-  public void robotPeriodic() 
-  {
-  }
-
+	/**
+	 * This function is called periodically during test mode.
+	 */
+	@Override
+	public void testPeriodic() {}
 }
