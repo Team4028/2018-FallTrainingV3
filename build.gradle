@@ -34,12 +34,30 @@ dependencies {
     compile navx()
 }
 
+// Create a function to ask git what the current branch name is
+def gitBranch() {
+    def branch = ""
+    // TODO: What happens if git isn't available? Handle this error case somehow
+    def proc = "git rev-parse --abbrev-ref HEAD".execute()
+    proc.in.eachLine { line -> branch = line }
+    proc.err.eachLine { line -> println line }
+    proc.waitFor()
+    branch
+}
+
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
 // in order to make them all available at runtime. Also adding the manifest so WPILib
 // knows where to look for our Robot Class.
 jar {
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_CLASS)
+    manifest {
+        edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_CLASS)
+        attributes (
+            "Implementation-Version": gitBranch(),
+            "Main-Class": "frc.robot.ManifestTest"
+        )
+    }
+
 }
 
 // Force Java 8 Compatibility mode for deployed code, in case the develoment
