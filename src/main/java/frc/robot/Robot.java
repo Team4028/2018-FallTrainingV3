@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.util.BeakUtilities;
+import frc.robot.util.DataLogger;
 
 import java.util.Date;
 
@@ -24,71 +26,46 @@ import java.util.Date;
  */
 public class Robot extends TimedRobot 
 {
-	private static final String ROBOT_NAME = "2018-FallTrainingV3";
-	
-	// create instance of singelton Subsystems
-	private Dashboard _dashboard = Dashboard.getInstance();
-	
-	//private Carriage _carriage = Carriage.getInstance();
-	//private Climber _climber = Climber.getInstance();
-	//private Elevator _elevator = Elevator.getInstance();
-	//private Infeed _infeed = Infeed.getInstance();
-	private OI _oi = OI.getInstance();
-	//private SwitchableCameraServer _camera = SwitchableCameraServer.getInstance();
+  // create instance of singelton Subsystems
+  private static final String ROBOT_NAME = "2019-FallTrainingV3-CMD BASED";
 
- 	
-	/**
-	 * This function is run when the robot is first started up and should be used for any initialization code.
-	 */
-	@Override
-	public void robotInit() 
-	{
-	}
+  private OI _oi = OI.getInstance();
+  
+	// class level working variables
+	private DataLogger _dataLogger = null;
+	private String _buildMsg = "?";
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-	 */
-	@Override
-	public void disabledInit() {
+  // ==============================================================================================
+  // Robot StartUp
+  // ==============================================================================================
 
-	}
+  /**
+   * This function is run when the robot is first started up and should be
+   * used for any initialization code.
+   */
+  @Override
+  public void robotInit() 
+  {
+    _buildMsg = BeakUtilities.WriteBuildInfoToDashboard(ROBOT_NAME);
+  }
 
-	@Override
-	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
+  // ==============================================================================================
+  // Robot Disabled
+  // ==============================================================================================
 
-	}
+  /**
+   * This function is called once each time the robot enters Disabled mode.
+   * You can use it to reset any subsystem information you want to clear when
+   * the robot is disabled.
+   */
+  @Override
+  public void disabledInit() 
+  {
+  }
 
-	/**
-	 * This method runs 1x when the robot enters auton mode
-	 */
-	@Override
-	public void autonomousInit() {
-	}
-
-	/**
-	 * This function is called periodically during autonomous.
-	 */
-	@Override
-	public void autonomousPeriodic() 
-	{
-		Scheduler.getInstance().run();
-	}
-
-	/**
-	 * This method runs 1x when the robot enters telop mode
-	 */
-	@Override
-	public void teleopInit() {
-	}
-
-	/**
-	 * This function is called periodically during operator control.
-	 */
-	@Override
-	public void teleopPeriodic() {
+  @Override
+  public void disabledPeriodic() 
+  {
     Scheduler.getInstance().run();
   }
 
