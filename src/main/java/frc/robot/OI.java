@@ -4,17 +4,15 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
-//import frc.robot.commands.Climber_RunClimberMotor;
-//import frc.robot.commands.Climber_ToggleClimberServo;
 import frc.robot.commands.Chassis_DriveWithControllers;
-import frc.robot.commands.Chassis_ShiftGear;
-import frc.robot.commands.Climber_RunClimberMotor;
-import frc.robot.commands.Climber_ToggleClimberServo;
+import frc.robot.commands.Infeed_ArmPos;
+import frc.robot.commands.Infeed_Homing;
+import frc.robot.commands.LimitSwitch_Motor;
+import frc.robot.commands.LimitSwitch_MotorStop;
 import frc.robot.util.BeakXboxController;
-import frc.robot.util.BeakXboxController.Thumbstick;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -36,17 +34,25 @@ public class OI
 	}
 	
 	// private constructor for singleton pattern
-  public OI() {
+  private OI() {
     _driverGamePad = new BeakXboxController(RobotMap.DRIVERS_STATION_DRIVER_GAMEPAD_USB_PORT);
 		_operatorGamepad = new BeakXboxController(RobotMap.DRIVERS_STATION_OPERATOR_GAMEPAD_USB_PORT);
 		
-		_operatorGamepad.a.whenPressed(new Climber_ToggleClimberServo());
-		_operatorGamepad.rightStick.whenActive(new Climber_RunClimberMotor(_operatorGamepad.rightStick));
-		_operatorGamepad.rightStick.whenReleased(new Climber_RunClimberMotor(_operatorGamepad.rightStick));
 		_driverGamePad.leftStick.whileActive(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
     _driverGamePad.rightStick.whileActive(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
     _driverGamePad.leftStick.whenReleased(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
-		_driverGamePad.rightStick.whenReleased(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
-		_driverGamePad.start.whenPressed(new Chassis_ShiftGear());
-  }
+    _driverGamePad.rightStick.whenReleased(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
+
+		_driverGamePad.a.whenPressed(new Infeed_Homing(true));
+		_driverGamePad.b.whenPressed(new Infeed_ArmPos(180));
+		_driverGamePad.x.whenPressed(new Infeed_ArmPos(90));
+		_driverGamePad.y.whenPressed(new Infeed_ArmPos(45));
+		
+		//_driverGamePad.a.whenPressed(new LimitSwitch_MotorStop());
+
+
+	
+
+  }	
+
 }

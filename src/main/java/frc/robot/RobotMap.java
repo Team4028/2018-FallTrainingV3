@@ -28,15 +28,21 @@ public class RobotMap
 	public static final int RIGHT_DRIVE_SLAVE_CAN_ADDR = 4;
 	public static final int LEFT_SWITCHBLADE_MOTOR_CAN_ADDRESS = 5;
 	public static final int RIGHT_SWITCHBLADE_MOTOR_CAN_ADDRESS = 6;
-	public static final int ELEVATOR_LIFT_MASTER_CAN_ADDRESS = 7;
+	//public static final int ELEVATOR_LIFT_MASTER_CAN_ADDRESS = 7;
 	public static final int CARRIAGE_LEFT_CAN_ADDRESS = 8;
 	public static final int CARRIAGE_RIGHT_CAN_ADDRESS = 9;
 	public static final int RIGHT_INFEED_DRIVE_CAN_ADDRESS = 10;
 	public static final int LEFT_INFEED_DRIVE_CAN_ADDRESS = 11;
 	public static final int CLIMBER_CAN_ADDRESS = 12;
+	//public static final int CONTROL_MOTOR_CAN_ADDRESS = 7;
+	public static final int LIMIT_CONTROL_MOTOR_CAN_ADDRESS = 14;
+	public static final int CONTROL_MOTOR_CAN_ADDRESS = 9;
+
 	
 	// DIO Ports
 	public static final int CARRIAGE_LIMIT_SWITCH_DIO_PORT = 0;
+	public static final int FORWARD_LIMIT_SWITCH_DIO_PORT = 5;
+	public static final int REVERSE_LIMIT_SWITCH_DIO_PORT = 7;
 	
 	// Analog Ports
 	public static final int STORED_PRESSURE_SENSOR_AIO_PORT = 0;	
@@ -74,5 +80,6 @@ public class RobotMap
   // =============================
 	public static final String PRIMARY_LOG_FILE_PATH = "/media/sda1/logging";
 	public static final String ALTERNATE_LOG_FILE_PATH = "/media/sdb1/logging";
+
 
 }

@@ -14,7 +14,8 @@ import frc.robot.RobotMap;
 /**
  * An example subsystem. Use this as a template.
  */
-public class Climber extends Subsystem implements ISubsystem {
+public class Climber extends Subsystem implements ISubsystem 
+{
   // define class level working variables
 
   TalonSRX motor;
@@ -55,32 +56,41 @@ public class Climber extends Subsystem implements ISubsystem {
   // Special Methods for ISubsystem
   // =====================================================================================
   @Override
-  public void updateLogData(LogDataBE logData) {
+  public void updateLogData(LogDataBE logData) 
+  {
     // logData.AddData("Carriage: LimitSwitch",
     // String.valueOf(get_isCubeInCarriage()));
   }
 
   @Override
-  public void updateDashboard() {
+  public void updateDashboard() 
+  {
     // SmartDashboard.putString("State: Carriage",
     // get_carriageWheelsState().toString());
   }
 
-  public void runClimberMotor(double motorSpeed) {
+  public void runClimberMotor(double motorSpeed) 
+  {
     // TODO: Consider limiting climberMotorSpeed to some range for safety
     motor.set(ControlMode.PercentOutput, motorSpeed);
   }
 
-  public void toggleClimberServo() {
-    if (servoPosition == ServoPosition.POSITION_0) {
+  public void toggleClimberServo() 
+  {
+    if (servoPosition == ServoPosition.POSITION_0) 
+    {
       servoPosition = ServoPosition.POSITION_1;
       System.out.println("Position 1");
       servo.set(1.0);
-    } else if (servoPosition == ServoPosition.POSITION_1) {
+    } 
+    else if (servoPosition == ServoPosition.POSITION_1) 
+    {
       servoPosition = ServoPosition.POSITION_0;
       servo.set(0.0);
       System.out.println("Position 0");
-    } else {
+    } 
+    else 
+    {
       // TODO: Throw appropriate error if another starting servo position is found
       System.err.println("Unknown starting servo position");
     }

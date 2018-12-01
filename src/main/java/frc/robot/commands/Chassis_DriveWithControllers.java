@@ -9,6 +9,7 @@ public class Chassis_DriveWithControllers extends Command
   private Thumbstick _leftThumbstick;
   private Thumbstick _rightThumbstick;
   private Chassis _chassis = Chassis.getInstance();
+  
   public Chassis_DriveWithControllers(Thumbstick leftThumbstick, Thumbstick rightThumbstick) 
   {
     requires(_chassis);
@@ -20,8 +21,7 @@ public class Chassis_DriveWithControllers extends Command
 
   
   @Override
-  protected void initialize() 
-  {
+  protected void initialize() {
   }
 
 

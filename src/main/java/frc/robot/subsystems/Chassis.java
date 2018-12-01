@@ -24,7 +24,11 @@ public class Chassis extends Subsystem
     private TalonSRX _rightMotorMaster;
     private TalonSRX _rightMotorSlave;
 
-    private DoubleSolenoid _shifter;   
+    private DoubleSolenoid _shifter;  
+    /*private static final double INFEED_F_MOTIONMAGIC = 0.33;
+    private static final double
+    private static final double
+    private static final double*/
     private static final edu.wpi.first.wpilibj.DoubleSolenoid.Value SHIFTER_LOW_GEAR_POS = DoubleSolenoid.Value.kReverse;
     private static final edu.wpi.first.wpilibj.DoubleSolenoid.Value SHIFTER_HIGH_GEAR_POS = DoubleSolenoid.Value.kForward;
 
@@ -53,7 +57,7 @@ public class Chassis extends Subsystem
 	
     public void setMotorSpeed (double driveSpeed, double turnSpeed)
     {
-        double leftSpeed = (.4 * -driveSpeed ) + (.5 * -turnSpeed);
+        double leftSpeed = (.4 * -driveSpeed ) + ( .5 * -turnSpeed);
         double rightSpeed= (.4 * driveSpeed ) + (.5 * -turnSpeed);
         //set the speed for the right chassis motor
         _rightMotorMaster.set(ControlMode.PercentOutput, rightSpeed);
@@ -81,8 +85,7 @@ public class Chassis extends Subsystem
 
 
   @Override
-  public void initDefaultCommand() 
-  {
+  public void initDefaultCommand() {
     
   }
 }
