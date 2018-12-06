@@ -169,7 +169,7 @@ public class Infeed extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-    
-  }
+        
+    }
 
 }
