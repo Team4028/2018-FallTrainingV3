@@ -10,12 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Infeed;
 
-public class Infeed_ArmPos extends Command {
+public class Infeed_MoveArmPos extends Command {
 
   private Infeed _infeed = Infeed.getInstance();
   private double _targetPosDeg;
 
-  public Infeed_ArmPos(double targetPosDeg) {
+  public Infeed_MoveArmPos(double targetPosDeg) {
     
     requires(_infeed);
     _targetPosDeg = targetPosDeg;

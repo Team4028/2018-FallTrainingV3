@@ -8,7 +8,7 @@
 package frc.robot;
 
 import frc.robot.commands.Chassis_DriveWithControllers;
-import frc.robot.commands.Infeed_ArmPos;
+import frc.robot.commands.Infeed_MoveArmPos;
 import frc.robot.commands.Infeed_Homing;
 import frc.robot.commands.LimitSwitch_Motor;
 import frc.robot.commands.LimitSwitch_MotorStop;
@@ -44,9 +44,9 @@ public class OI
     _driverGamePad.rightStick.whenReleased(new Chassis_DriveWithControllers(_driverGamePad.leftStick, _driverGamePad.rightStick));
 
 		_driverGamePad.a.whenPressed(new Infeed_Homing(true));
-		_driverGamePad.b.whenPressed(new Infeed_ArmPos(180));
-		_driverGamePad.x.whenPressed(new Infeed_ArmPos(90));
-		_driverGamePad.y.whenPressed(new Infeed_ArmPos(45));
+		_driverGamePad.b.whenPressed(new Infeed_MoveArmPos(180));
+		_driverGamePad.x.whenPressed(new Infeed_MoveArmPos(90));
+		_driverGamePad.y.whenPressed(new Infeed_MoveArmPos(45));
 		
 		//_driverGamePad.a.whenPressed(new LimitSwitch_MotorStop());
 

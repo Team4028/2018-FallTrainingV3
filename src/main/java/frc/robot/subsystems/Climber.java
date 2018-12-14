@@ -14,8 +14,7 @@ import frc.robot.RobotMap;
 /**
  * An example subsystem. Use this as a template.
  */
-public class Climber extends Subsystem implements ISubsystem 
-{
+public class Climber extends Subsystem implements ISubsystem {
   // define class level working variables
 
   TalonSRX motor;

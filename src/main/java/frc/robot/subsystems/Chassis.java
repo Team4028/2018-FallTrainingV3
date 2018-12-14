@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -15,8 +16,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 
-public class Chassis extends Subsystem 
-{
+public class Chassis extends Subsystem {
 
     private TalonSRX _leftMotorMaster;
     private TalonSRX _leftMotorSlave;
@@ -25,38 +25,40 @@ public class Chassis extends Subsystem
     private TalonSRX _rightMotorSlave;
 
     private DoubleSolenoid _shifter;  
-    /*private static final double INFEED_F_MOTIONMAGIC = 0.33;
-    private static final double
-    private static final double
-    private static final double*/
     private static final edu.wpi.first.wpilibj.DoubleSolenoid.Value SHIFTER_LOW_GEAR_POS = DoubleSolenoid.Value.kReverse;
     private static final edu.wpi.first.wpilibj.DoubleSolenoid.Value SHIFTER_HIGH_GEAR_POS = DoubleSolenoid.Value.kForward;
 
-    private Chassis()
-    {   //left motors set
+    
+    private static Chassis _instance = new Chassis();
+	
+    public static Chassis getInstance() {
+		return _instance;
+    }
+    
+    private Chassis() {   
+        //left motors set
         _leftMotorMaster = new TalonSRX(RobotMap.LEFT_DRIVE_MASTER_CAN_ADDR);
         _leftMotorSlave = new TalonSRX(RobotMap.LEFT_DRIVE_SLAVE_CAN_ADDR);
         _leftMotorSlave.follow(_leftMotorMaster);
+        _leftMotorMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+        _leftMotorSlave.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
         
         //right motors set
         _rightMotorMaster = new TalonSRX(RobotMap.RIGHT_DRIVE_MASTER_CAN_ADDR);
         _rightMotorSlave = new TalonSRX(RobotMap.RIGHT_DRIVE_SLAVE_CAN_ADDR);
         _rightMotorSlave.follow(_rightMotorMaster);
+        _rightMotorMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+        _rightMotorSlave.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+      
 
         _shifter = new DoubleSolenoid(RobotMap.SHIFTER_EXTEND_PCM_PORT,RobotMap.SHIFTER_RETRACT_PCM_PORT);
 
         
     }
   
-	private static Chassis _instance = new Chassis();
 	
-    public static Chassis getInstance() 
-    {
-		return _instance;
-	}
 	
-    public void setMotorSpeed (double driveSpeed, double turnSpeed)
-    {
+    public void setMotorSpeed (double driveSpeed, double turnSpeed) {
         double leftSpeed = (.4 * -driveSpeed ) + ( .5 * -turnSpeed);
         double rightSpeed= (.4 * driveSpeed ) + (.5 * -turnSpeed);
         //set the speed for the right chassis motor
@@ -66,20 +68,17 @@ public class Chassis extends Subsystem
     }
 
 
-    public void setHighGear()
-    {
+    public void setHighGear() {
         //set the gearbox to high gear
         _shifter.set(Chassis.SHIFTER_HIGH_GEAR_POS);
 
     }
-    public void setLowGear()
-    {
+    public void setLowGear() {
         //set the gearbox to low gear
         _shifter.set(Chassis.SHIFTER_LOW_GEAR_POS);
     }
 
-    public synchronized boolean HighGear() 
-    {
+    public synchronized boolean get_isHighGear() {
 		return _shifter.get() == SHIFTER_HIGH_GEAR_POS;
 	}
 

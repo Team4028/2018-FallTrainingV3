@@ -29,7 +29,7 @@ public class Chassis_ShiftGear extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-      if(!_chassis.HighGear()) 
+      if(!_chassis.get_isHighGear()) 
       {
       _chassis.setHighGear();
       } 

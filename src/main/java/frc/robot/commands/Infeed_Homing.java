@@ -23,18 +23,15 @@ public class Infeed_Homing extends Command {
 
     @Override
     protected void initialize() {
-     if(_isForceRezero == true){
-         _infeed.resetZeroState();
-     } 
-  }
+        if(_isForceRezero == true){
+            _infeed.resetZeroState();
+        } 
+    }
 
 
     protected void execute() {
         _infeed.homeArms();
-        System.out.println("Here");
-
-        
-       
+        //System.out.println("Here"); 
     }
 
 

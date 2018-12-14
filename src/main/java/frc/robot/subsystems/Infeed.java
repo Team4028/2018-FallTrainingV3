@@ -21,6 +21,7 @@ public class Infeed extends Subsystem {
     private TalonSRX _infeedRightMotor;
     private Boolean _isLeftArmHomed = false;
     private Boolean _isRightArmHomed = false;
+
     private static final double INFEED_MOTION_MAGIC_F = 0.3354098361;
     private static final double INFEED_MOTION_MAGIC_P = 1.5;
     private static final double INFEED_MOTION_MAGIC_I = 0;
@@ -30,6 +31,12 @@ public class Infeed extends Subsystem {
     private static final double DEGREES_TO_NATIVE_UNITS_CONVERSION = (4096/360);
 
 
+    private static Infeed _instance = new Infeed();
+	
+    public static Infeed getInstance() {
+		return _instance;
+    }
+   
     private Infeed(){
 
         _infeedLeftMotor = new TalonSRX (RobotMap.LEFT_SWITCHBLADE_MOTOR_CAN_ADDRESS);
@@ -59,11 +66,7 @@ public class Infeed extends Subsystem {
         
     }
 
-    private static Infeed _instance = new Infeed();
-	
-    public static Infeed getInstance() {
-		return _instance;
-    }
+    
     
     public void setMotorSpeed(ControlMode percentoutput, double speed) {
         _infeedLeftMotor.set(ControlMode.PercentOutput, leftSpeed);
@@ -76,7 +79,7 @@ public class Infeed extends Subsystem {
     //=====================================================
 
 
-    public int getLeftMotorPosNU(){
+    public int get_LeftMotorPosNU(){
         return _infeedLeftMotor.getSelectedSensorPosition(0);
     }
 
@@ -85,7 +88,7 @@ public class Infeed extends Subsystem {
     //=====================================================
    
 
-    public int getRightMotorPosNU(){
+    public int get_RightMotorPosNU(){
         return _infeedRightMotor.getSelectedSensorPosition(0);
     }
 
@@ -151,16 +154,16 @@ public class Infeed extends Subsystem {
 	public void updateDashboard() {
         
         //left side pos and home
-        SmartDashboard.putNumber("Infeed:LeftArmPosDEG", nativeUnitsToDegrees(getLeftMotorPosNU()));
+        SmartDashboard.putNumber("Infeed:LeftArmPosDEG", nativeUnitsToDegrees(get_LeftMotorPosNU()));
         SmartDashboard.putBoolean("Infeed:isLeftArmHomed", _isLeftArmHomed);
-        SmartDashboard.putNumber("Infeed:LeftArmPosNU", getLeftMotorPosNU());
+        SmartDashboard.putNumber("Infeed:LeftArmPosNU", get_LeftMotorPosNU());
        
 
         
         //right side pos and home
         SmartDashboard.putBoolean("Infeed:isRightArmHomed", _isRightArmHomed);
-        SmartDashboard.putNumber("Infeed:RightArmPosDEG", nativeUnitsToDegrees(getRightMotorPosNU()));
-        SmartDashboard.putNumber("Infeed:RightArmPosNU", getRightMotorPosNU());
+        SmartDashboard.putNumber("Infeed:RightArmPosDEG", nativeUnitsToDegrees(get_RightMotorPosNU()));
+        SmartDashboard.putNumber("Infeed:RightArmPosNU", get_RightMotorPosNU());
 
 	}
 
@@ -169,7 +172,7 @@ public class Infeed extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        
+
     }
 
 }
